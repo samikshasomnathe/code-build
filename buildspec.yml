@@ -1,0 +1,17 @@
+phases:
+  build:
+    commands:
+      - mvn clean package
+  post_build:
+    commands:
+      
+      - echo Build completed
+artifacts:
+  files:
+    - target/*.war
+    - scripts/start_service.sh
+    - scripts/stop_service.sh
+    
+    - appspec.yml
+   
+  discard-paths: yes

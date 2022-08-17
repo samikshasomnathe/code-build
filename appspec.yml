@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+
+files:
+  - source: student.war
+    destination: /opt/apache-tomcat-8.5.82/webapps/
+    
+file_exists_behavior: OVERWRITE    
+          
+hooks:
+  BeforeInstall:
+    - location: pre-installation.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: start_service.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: stop_service.sh
+      timeout: 300
+      runas: root 
